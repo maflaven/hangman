@@ -9,8 +9,12 @@ class Game
     @occluded_word = Array.new(checker.secret_word.length) { '_' }
   end
 
-  def display_board
-    puts "Secret word: #{@occluded_word.join(' ')}"
+  def display_board(word = nil)
+    if word
+      puts "Secret word: #{word.join(' ')}"
+    else
+      puts "Secret word: #{@occluded_word.join(' ')}"
+    end
   end
 
   def check_letter(guess)
@@ -29,8 +33,8 @@ class Game
       check_letter(@guesser.guess)
       turns -= 1
     end
-    
-    display_board
+
+    display_board(@checker.secret_word.split(''))
 
     if game_won?
       puts "You saved him... for now..."
